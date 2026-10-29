@@ -3,14 +3,16 @@ $secreto = 7;
 $intentos = 0;
 $adivinado = false;
 
-while (!$adivinado) {
+while (!$adivinado && $intentos < 3) {
     echo "Adivina el número (1-10): ";
 
     $entrada = trim(fgets(STDIN));
 
     // Validamos que la entrada sea un entero.
-    $numero = filter_var($entrada, FILTER_VALIDATE_INT);
+    //$numero = filter_var($entrada, FILTER_VALIDATE_INT);
 
+    $numero = is_int($entrada) ? (int)$entrada : false;
+    
     if ($numero === false || $numero < 1 || $numero > 10) {
         echo "Introduce un entero entre 1 y 10.\n";
         continue;
@@ -28,5 +30,5 @@ while (!$adivinado) {
     }
 }
 
-echo "Número de intentos: $intentos\n";
+echo "Número de intentos: $intentos+1\n";
 ?>
